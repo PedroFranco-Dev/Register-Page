@@ -36,8 +36,8 @@
                 <input type="password" name="password" id="password" placeholder="Type your Password:">
             </div>
             <p>Do you want help creating your password? 
-            <span id="generate-password">Click Here.</span></p>
-            <div id="generate-option">
+            <span id="open-generate-password">Click Here.</span></p>
+            <div id="generate-options" class="hide">
                 <p>Pick your Options</p>
                 <div class="form-control">
                     <label for="length">Characters Lenght</label>
@@ -55,16 +55,18 @@
                     <label for="symbols">Symbols</label>
                     <input type="checkbox" id="symbols" name="symbols" checked>
                 </div>
-            </div>
-            <div id="generated-password">
-                <p>Here is your password</p>
-                <h4></h4>
-                <button id="copy-password">Click to Copy !</button>
+                <button id="generate-password">Create Password</button>
+                <div id="generated-password">
+                    <p>Here is your password</p>
+                    <h4></h4>
+                    <button id="copy-password">Click to Copy !</button>
+                </div>
             </div>
             <div class="form-control">
                 <label for="confirmpassword">Confirm your password</label>
                 <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm your password:">
             </div>
+            
             <input type="submit" value="Register">
         </div>
     </div>
