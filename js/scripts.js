@@ -25,10 +25,42 @@ const getSymbol = () => {
     return symbols[Math.floor(Math.random() * symbols.length)];
 };
 
+const generatedPassword = (getLetterLowerCase, getLetterUpperCase, getNumber, getSymbol) => {
+    let password = ""
+
+    const passwordLenght = 8
+
+    const generators = [
+        getLetterLowerCase,
+        getLetterUpperCase,
+        getNumber,
+        getSymbol,
+    ];
+
+    for (i = 0; i < passwordLenght; i = i + 4) {
+        generators.forEach(() => {
+            const randomValue = generators [Math.floor( Math.random() * generators.length)]();
+
+            password += randomValue;
+        });
+    };
+    generatePasswordElement.style.display = "block";
+    generatePasswordElement.querySelector("h4").innerText = password;
+};
+
+// password = password.slice(0, passwordLenght)
+
+// console.log(password)
+
 // Events
 
 generatePasswordButton.addEventListener("click", () => {
-    
+generatedPassword(
+    getLetterLowerCase,
+    getLetterUpperCase,
+    getNumber,
+    getSymbol
+    );
 });
 
 
