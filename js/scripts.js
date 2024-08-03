@@ -3,7 +3,14 @@ const generatePasswordButton = document.querySelector("#generate-password")
 const generatePasswordElement = document.querySelector("#generated-password")
 
 
-
+// New Functions
+const openCloseGeneratorBtn = document.querySelector("#open-generate-password")
+const generatePasswordContainer = document.querySelector("#generate-options")
+const lenghtInput = document.querySelector("#length")
+const lettersInput = document.querySelector("#letters")
+const numbersInput = document.querySelector("#numbers")
+const symbolsInput = document.querySelector("#symbols")
+const copyPasswordButton = document.querySelector("#copy-password")
 
 // Functions
 
@@ -27,7 +34,8 @@ const getSymbol = () => {
 
 const generatedPassword = (getLetterLowerCase, getLetterUpperCase, getNumber, getSymbol) => {
     let password = ""
-
+    
+    
     const passwordLenght = 8
 
     const generators = [
@@ -54,7 +62,8 @@ const generatedPassword = (getLetterLowerCase, getLetterUpperCase, getNumber, ge
 
 // Events
 
-generatePasswordButton.addEventListener("click", () => {
+generatePasswordButton.addEventListener("click", (e) => {
+    e.preventDefault()
 generatedPassword(
     getLetterLowerCase,
     getLetterUpperCase,
@@ -62,6 +71,10 @@ generatedPassword(
     getSymbol
     );
 });
+
+openCloseGeneratorBtn.addEventListener("click", () => {
+    generatePasswordContainer.classList.toggle("hide")
+})
 
 
 
