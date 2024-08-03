@@ -1,20 +1,13 @@
-// Elements
-const generatePasswordButton = document.querySelector("#generate-password")
-const generatePasswordElement = document.querySelector("#generated-password")
+const generatePasswordButton = document.querySelector("#generate-password");
+const generatePasswordElement = document.querySelector("#generated-password");
+const openCloseGeneratorBtn = document.querySelector("#open-generate-password");
+const generatePasswordContainer = document.querySelector("#generate-options");
+const lengthInput = document.querySelector("#length");
+const lettersInput = document.querySelector("#letters");
+const numbersInput = document.querySelector("#numbers");
+const symbolsInput = document.querySelector("#symbols");
+const copyPasswordButton = document.querySelector("#copy-password");
 
-
-// New Functions
-const openCloseGeneratorBtn = document.querySelector("#open-generate-password")
-const generatePasswordContainer = document.querySelector("#generate-options")
-const lengthInput = document.querySelector("#length")
-const lettersInput = document.querySelector("#letters")
-const numbersInput = document.querySelector("#numbers")
-const symbolsInput = document.querySelector("#symbols")
-const copyPasswordButton = document.querySelector("#copy-password")
-
-// Functions
-
-// Letters, Numbers and Simbols
 const getLetterLowerCase = () => {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 };
@@ -53,20 +46,15 @@ const generatePassword = (length, useLetters, useNumbers, useSymbols) => {
         return "";
     }
 
-// Mudei aqui por causa que agora tem opção de colocar quantidade de Caracteres :P
     for (i = 0; i < passwordLenght; i++) {
             const randomGenerator = generators[Math.floor(Math.random() * generators.length)];
             password += randomGenerator();
     };
-    return password
+    return password;
 };
 
-
-// Events
-
-// Agora aqui vai receber diretamente os valores das Checkbox 
 generatePasswordButton.addEventListener("click", (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const length = +lengthInput.value;
     const useLetters = lettersInput.checked;
     const useNumbers = numbersInput.checked;
@@ -78,7 +66,7 @@ generatePasswordButton.addEventListener("click", (e) => {
 });
 
 openCloseGeneratorBtn.addEventListener("click", () => {
-    generatePasswordContainer.classList.toggle("hide")
+    generatePasswordContainer.classList.toggle("hide");
 })
 
 copyPasswordButton.addEventListener("click", (e) => {
@@ -94,13 +82,5 @@ copyPasswordButton.addEventListener("click", (e) => {
             copyPasswordButton.innerText = "Click to Copy !"
 
         }, 1000)
-    })
-})
-
-
-
-
-
-
-
-
+    });
+});
