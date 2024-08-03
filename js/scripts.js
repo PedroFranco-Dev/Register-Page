@@ -81,6 +81,22 @@ openCloseGeneratorBtn.addEventListener("click", () => {
     generatePasswordContainer.classList.toggle("hide")
 })
 
+copyPasswordButton.addEventListener("click", (e) => {
+    e.preventDefault()
+
+    const password = generatePasswordElement.querySelector("h4").innerText;
+
+    navigator.clipboard.writeText(password).then(() => {
+        copyPasswordButton.innerText = "password copied successfully !";
+
+        setTimeout(() => {
+
+            copyPasswordButton.innerText = "Click to Copy !"
+
+        }, 1000)
+    })
+})
+
 
 
 
