@@ -6,7 +6,7 @@ const generatePasswordElement = document.querySelector("#generated-password")
 // New Functions
 const openCloseGeneratorBtn = document.querySelector("#open-generate-password")
 const generatePasswordContainer = document.querySelector("#generate-options")
-const lenghtInput = document.querySelector("#length")
+const lengthInput = document.querySelector("#length")
 const lettersInput = document.querySelector("#letters")
 const numbersInput = document.querySelector("#numbers")
 const symbolsInput = document.querySelector("#symbols")
@@ -32,44 +32,49 @@ const getSymbol = () => {
     return symbols[Math.floor(Math.random() * symbols.length)];
 };
 
-const generatedPassword = (getLetterLowerCase, getLetterUpperCase, getNumber, getSymbol) => {
+const generatePassword = (length, useLetters, useNumbers, useSymbols) => {
     let password = ""
-    
-    
-    const passwordLenght = 8
+    const passwordLenght = +lengthInput.value;
+    const generators = [];
 
-    const generators = [
-        getLetterLowerCase,
-        getLetterUpperCase,
-        getNumber,
-        getSymbol,
-    ];
-
-    for (i = 0; i < passwordLenght; i = i + 4) {
-        generators.forEach(() => {
-            const randomValue = generators [Math.floor( Math.random() * generators.length)]();
-
-            password += randomValue;
-        });
+    if(useLetters) {
+        generators.push(getLetterLowerCase, getLetterUpperCase)
     };
-    generatePasswordElement.style.display = "block";
-    generatePasswordElement.querySelector("h4").innerText = password;
+
+    if(useNumbers) {
+        generators.push(getNumber)
+    };
+
+    if(useSymbols) {
+        generators.push(getSymbol)
+    };
+
+    if(generators.length === 0) {
+        return "";
+    }
+
+// Mudei aqui por causa que agora tem opção de colocar quantidade de Caracteres :P
+    for (i = 0; i < passwordLenght; i++) {
+            const randomGenerator = generators[Math.floor(Math.random() * generators.length)];
+            password += randomGenerator();
+    };
+    return password
 };
 
-// password = password.slice(0, passwordLenght)
-
-// console.log(password)
 
 // Events
 
+// Agora aqui vai receber diretamente os valores das Checkbox 
 generatePasswordButton.addEventListener("click", (e) => {
     e.preventDefault()
-generatedPassword(
-    getLetterLowerCase,
-    getLetterUpperCase,
-    getNumber,
-    getSymbol
-    );
+    const length = +lengthInput.value;
+    const useLetters = lettersInput.checked;
+    const useNumbers = numbersInput.checked;
+    const useSymbols = symbolsInput.checked;
+    const password = generatePassword(length, useLetters, useNumbers, useSymbols);
+
+    generatePasswordElement.style.display = "block";
+    generatePasswordElement.querySelector("h4").innerText = password;
 });
 
 openCloseGeneratorBtn.addEventListener("click", () => {
